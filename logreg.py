@@ -59,19 +59,13 @@ y_test = test_df['label']
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
-
-# Initialize models
-models = {
-    'Logistic Regression': LogisticRegression(max_iter=1000)
-
-
-}
-
-# Train and evaluate models
-print(f"\nTraining {name}...")
+# Initialize and train model
+model = LogisticRegression(max_iter=1000)
+print("\nTraining Logistic Regression...")
 model.fit(X_train_scaled, y_train)
+
+# Predictions and evaluation
 y_pred = model.predict(X_test_scaled)
 acc = accuracy_score(y_test, y_pred)
-print(f"{name} Accuracy: {acc:.4f}")
-print(f"{name} Classification Report:\n{classification_report(y_test, y_pred)}")
-
+print(f"Accuracy: {acc:.4f}")
+print(f"Classification Report:\n{classification_report(y_test, y_pred)}")
