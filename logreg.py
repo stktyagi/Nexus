@@ -62,17 +62,16 @@ X_test_scaled = scaler.transform(X_test)
 
 # Initialize models
 models = {
-    'Logistic Regression': LogisticRegression(max_iter=1000),
-    'Random Forest': RandomForestClassifier(n_estimators=100, random_state=42),
-    'XGBoost': XGBClassifier(use_label_encoder=False, eval_metric='logloss')
+    'Logistic Regression': LogisticRegression(max_iter=1000)
+
+
 }
 
 # Train and evaluate models
-for name, model in models.items():
-    print(f"\nTraining {name}...")
-    model.fit(X_train_scaled, y_train)
-    y_pred = model.predict(X_test_scaled)
-    acc = accuracy_score(y_test, y_pred)
-    print(f"{name} Accuracy: {acc:.4f}")
-    print(f"{name} Classification Report:\n{classification_report(y_test, y_pred)}")
+print(f"\nTraining {name}...")
+model.fit(X_train_scaled, y_train)
+y_pred = model.predict(X_test_scaled)
+acc = accuracy_score(y_test, y_pred)
+print(f"{name} Accuracy: {acc:.4f}")
+print(f"{name} Classification Report:\n{classification_report(y_test, y_pred)}")
 
