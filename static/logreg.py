@@ -45,9 +45,11 @@ def load_data(file_paths):
 train_files = [f"ember2018/train_features_{i}.jsonl" for i in range(6)]
 test_file = "ember2018/test_features.jsonl"
 
+
 # Load training and testing data
 train_df = load_data(train_files)
 test_df = load_data([test_file])
+
 
 # Separate features and labels
 X_train = train_df.drop('label', axis=1)

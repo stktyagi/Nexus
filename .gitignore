@@ -1,5 +1,7 @@
-ember2018/
+static/ember2018/
 venv/
 __pycache__/
 *.pyc
-ember2018/
+network/MachineLearningCVE/
+dynamic/detonation_overviews.csv
+.env

@@ -3,7 +3,7 @@ import json
 from tqdm import tqdm
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score, classification_report
-from xgboost import XGBClassifier
+import xgboost as xgb
 
 # Feature extraction from each sample
 def extract_features(sample):
@@ -59,7 +59,7 @@ X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
 # Train XGBoost Classifier
-clf = XGBClassifier(
+clf = xgb.XGBClassifier(
     objective='multi:softmax',
     num_class=3,
     eval_metric='mlogloss',
@@ -73,7 +73,6 @@ clf = XGBClassifier(
     reg_lambda=1,
     use_label_encoder=False
 )
-
 #clf = XGBClassifier(use_label_encoder=False, eval_metric='logloss', random_state=42)
 clf.fit(X_train_scaled, y_train)
 
