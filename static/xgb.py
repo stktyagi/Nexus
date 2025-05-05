@@ -1,7 +1,6 @@
 import pandas as pd
 import json
 from tqdm import tqdm
-from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score, classification_report
 import xgboost as xgb
 
@@ -43,20 +42,14 @@ test_file = "ember2018/test_features.jsonl"
 # Load datasets
 train_df = load_data(train_files)
 test_df = load_data([test_file])
+test_df = test_df[test_df['label'] != -1]
+train_df = train_df[train_df['label'] != -1]
 
 # Separate features and labels
 X_train = train_df.drop('label', axis=1)
 y_train = train_df['label']
 X_test = test_df.drop('label', axis=1)
 y_test = test_df['label']
-# Fix invalid class labels
-y_train = y_train.replace(-1, 2)
-y_test = y_test.replace(-1, 2)
-
-# Scale features
-scaler = StandardScaler()
-X_train_scaled = scaler.fit_transform(X_train)
-X_test_scaled = scaler.transform(X_test)
 
 # Train XGBoost Classifier
 clf = xgb.XGBClassifier(
@@ -71,13 +64,11 @@ clf = xgb.XGBClassifier(
     gamma=0.2,
     reg_alpha=0.5,
     reg_lambda=1,
-    use_label_encoder=False
 )
-#clf = XGBClassifier(use_label_encoder=False, eval_metric='logloss', random_state=42)
-clf.fit(X_train_scaled, y_train)
+clf.fit(X_train, y_train)
 
 # Predict and evaluate
-y_pred = clf.predict(X_test_scaled)
+y_pred = clf.predict(X_test)
 print("XGBoost Accuracy:", accuracy_score(y_test, y_pred))
 print("Classification Report:\n", classification_report(y_test, y_pred))
 

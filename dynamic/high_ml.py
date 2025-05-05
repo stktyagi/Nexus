@@ -50,8 +50,7 @@ models = {
         max_depth=14,
         learning_rate=0.03,
         subsample=0.85,
-        colsample_bytree=0.85,
-        use_label_encoder=False,
+        colsample_bytree=0.85, 
         eval_metric="logloss")
 }
 

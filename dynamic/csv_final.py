@@ -60,15 +60,9 @@ def write_to_csv(data, filename="detonation_overviews.csv"):
         "is_peexe", "is_64bit", "is_executable", "tag_evasive", "scanner_crowdstrike_percent",
         "scanner_metadefender_percent", "scanner_metadefender_positives", "multiscan_result"
     ]
-    
-    # Open file in write mode, create if it doesn't exist
     with open(filename, mode="w", newline='') as file:
         writer = csv.DictWriter(file, fieldnames=headers)
-        
-        # Write header only if the file is empty
         writer.writeheader()
-
-        # Write data rows
         for row in data:
             writer.writerow(row)
 
@@ -81,20 +75,11 @@ def process_data():
 
     overview_data = []
 
-  #  for sample in samples:
-   #     sha256 = sample.get('sha256')
-    #    if sha256:
-        #    overview = fetch_overview(sha256)
-         #   if overview:
-                # Check if 'scanners_v2' exists and is not None
     for sample in samples:
         sha256 = sample.get('sha256')
         if sha256:
             overview = fetch_overview(sha256)
             if overview:
-                # Ensure scanners_v2 exists and isn't None
-               # scanners_v2 = overview.get("scanners_v2") or {}
-
                 row = {
                     "sha256": sha256,
                     "threat_score": overview.get('threat_score'),
@@ -102,29 +87,16 @@ def process_data():
                     "file_size": overview.get('size'),
                     "type": overview.get('type'),
                     "vx_family": overview.get('vx_family'),
-                    #"is_peexe": "PE/EXE" in overview.get('type', ""),  # Basic check for EXE type
-                    #"is_64bit": None,  # Assuming this needs to be fetched from another source if available
-                    #"is_executable": "executable" in overview.get('type', "").lower(),  # Basic check for executable type
-                    #"tag_evasive": "evasive" in overview.get('tags', []),  # Check if 'evasive' tag exists
-#                    "scanner_crowdstrike_percent": scanners_v2.get('crowdstrike_ml', {}).get('percent', None),
-#                    "scanner_metadefender_percent": scanners_v2.get('metadefender', {}).get('percent', None),
-#                    "scanner_metadefender_positives": scanners_v2.get('metadefender', {}).get('positives', None),
-                    #"multiscan_result": overview.get('multiscan_result')
-
-        "is_peexe": int("peexe" in overview.get("type_short", [])),
-        "is_64bit": int("64bits" in overview.get("type_short", [])),
-
-        "is_executable": int("executable" in overview.get("type_short", [])),
-        "tag_evasive": int("evasive" in overview.get("tags", [])),
-         "scanner_crowdstrike_percent": (scanners_v2.get('crowdstrike_ml') or {}).get('percent'),
-                "scanner_metadefender_percent": (scanners_v2.get('metadefender') or {}).get('percent'),
-                "scanner_metadefender_positives": (scanners_v2.get('metadefender') or {}).get('positives'),
-                                                                                              
-        "multiscan_result": overview.get("multiscan_result", 0)
+                    "is_peexe": int("peexe" in overview.get("type_short", [])),
+                    "is_64bit": int("64bits" in overview.get("type_short", [])),
+                    "is_executable": int("executable" in overview.get("type_short", [])),
+                    "tag_evasive": int("evasive" in overview.get("tags", [])),
+                    "scanner_crowdstrike_percent": (scanners_v2.get('crowdstrike_ml') or {}).get('percent'),
+                    "scanner_metadefender_percent": (scanners_v2.get('metadefender') or {}).get('percent'),
+                    "scanner_metadefender_positives": (scanners_v2.get('metadefender') or {}).get('positives'),                                                                                      
+                    "multiscan_result": overview.get("multiscan_result", 0)
                 }
                 overview_data.append(row)
-
-    # Write the overview data to CSV
     write_to_csv(overview_data)
 
 if __name__ == "__main__":

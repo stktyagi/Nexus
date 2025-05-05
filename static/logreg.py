@@ -13,7 +13,6 @@ from tqdm import tqdm
 # Function to extract features from a single JSON line
 def extract_features(sample):
     features = {}
-    # Basic features
     features['size'] = sample.get('general', {}).get('size', 0)
     features['vsize'] = sample.get('general', {}).get('vsize', 0)
     features['has_debug'] = sample.get('general', {}).get('has_debug', 0)
@@ -49,13 +48,15 @@ test_file = "ember2018/test_features.jsonl"
 # Load training and testing data
 train_df = load_data(train_files)
 test_df = load_data([test_file])
-
+test_df = test_df[test_df['label'] != -1]
+train_df = train_df[train_df['label'] != -1]
 
 # Separate features and labels
 X_train = train_df.drop('label', axis=1)
 y_train = train_df['label']
 X_test = test_df.drop('label', axis=1)
 y_test = test_df['label']
+
 
 # Feature scaling
 scaler = StandardScaler()

@@ -1,7 +1,6 @@
 import pandas as pd
 import json
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score, classification_report
 from tqdm import tqdm
 
@@ -40,9 +39,11 @@ def load_data(file_paths):
 train_files = [f"ember2018/train_features_{i}.jsonl" for i in range(4)]
 test_file = "ember2018/test_features.jsonl"
 
-# Load datasets
+# Load training and testing data
 train_df = load_data(train_files)
 test_df = load_data([test_file])
+test_df = test_df[test_df['label'] != -1]
+train_df = train_df[train_df['label'] != -1]
 
 # Separate features and labels
 X_train = train_df.drop('label', axis=1)
@@ -50,17 +51,11 @@ y_train = train_df['label']
 X_test = test_df.drop('label', axis=1)
 y_test = test_df['label']
 
-# Standardize the features
-scaler = StandardScaler()
-X_train_scaled = scaler.fit_transform(X_train)
-X_test_scaled = scaler.transform(X_test)
-
 # Train the Random Forest classifier
 clf = RandomForestClassifier(n_estimators=100, random_state=42)
-clf.fit(X_train_scaled, y_train)
+clf.fit(X_train, y_train)
 
 # Predict and evaluate
-y_pred = clf.predict(X_test_scaled)
+y_pred = clf.predict(X_test)
 print("Random Forest Accuracy:", accuracy_score(y_test, y_pred))
 print("Classification Report:\n", classification_report(y_test, y_pred))
-
