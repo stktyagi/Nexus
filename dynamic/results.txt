@@ -1,0 +1,65 @@
+Training Logistic Regression with Cross-Validation...
+Cross-Validation Scores for Logistic Regression: [0.68 0.6  0.74 0.7  0.52]
+Mean Cross-Validation Accuracy for Logistic Regression: 0.6480
+Standard Deviation for Logistic Regression: 0.0786
+
+Logistic Regression Classification Report:
+                    precision    recall  f1-score   support
+
+         malicious       0.82      0.53      0.64        76
+no specific threat       0.64      0.95      0.77       103
+        suspicious       0.67      0.46      0.55        71
+
+          accuracy                           0.68       250
+         macro avg       0.71      0.65      0.65       250
+      weighted avg       0.71      0.68      0.67       250
+
+
+Confusion Matrix:
+[[40 22 14]
+ [ 3 98  2]
+ [ 6 32 33]]
+
+Training Random Forest with Cross-Validation...
+Cross-Validation Scores for Random Forest: [0.86 0.7  0.76 0.72 0.72]
+Mean Cross-Validation Accuracy for Random Forest: 0.7520
+Standard Deviation for Random Forest: 0.0574
+
+Random Forest Classification Report:
+                    precision    recall  f1-score   support
+
+         malicious       0.99      0.97      0.98        76
+no specific threat       0.90      0.99      0.94       103
+        suspicious       0.98      0.86      0.92        71
+
+          accuracy                           0.95       250
+         macro avg       0.96      0.94      0.95       250
+      weighted avg       0.95      0.95      0.95       250
+
+
+Confusion Matrix:
+[[ 74   2   0]
+ [  0 102   1]
+ [  1   9  61]]
+
+Training XGBoost with Cross-Validation...
+Cross-Validation Scores for XGBoost: [0.86 0.72 0.72 0.72 0.76]
+Mean Cross-Validation Accuracy for XGBoost: 0.7560
+Standard Deviation for XGBoost: 0.0543
+
+XGBoost Classification Report:
+                    precision    recall  f1-score   support
+
+         malicious       0.99      0.97      0.98        76
+no specific threat       0.91      0.98      0.94       103
+        suspicious       0.97      0.87      0.92        71
+
+          accuracy                           0.95       250
+         macro avg       0.96      0.94      0.95       250
+      weighted avg       0.95      0.95      0.95       250
+
+
+Confusion Matrix:
+[[ 74   2   0]
+ [  0 101   2]
+ [  1   8  62]]

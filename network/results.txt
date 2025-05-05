@@ -1,0 +1,19 @@
+Logistic regression Model 1
+
+Cross-validation scores: 0.9248888888888889, 0.9182222222222223, 0.9195555555555556, 0.9124444444444444, 0.9284444444444444
+Mean cross-validation score: 0.92
+
+Logistic regression Model 2
+
+Cross-validation scores: 0.9293333333333333, 0.9222222222222223, 0.9253333333333333, 0.9151111111111111, 0.9315555555555556
+Mean cross-validation score: 0.92
+
+Random Forest Model 1
+
+Cross-validation scores: 0.9613333333333334, 0.956, 0.952, 0.9542857142857143, 0.9514285714285714
+Mean cross-validation score: 0.96
+
+Random Forest Model 2
+
+Cross-validation scores: 0.9830476190476191, 0.9817142857142858, 0.9786666666666667, 0.9828571428571429, 0.98
+Mean cross-validation score: 0.98

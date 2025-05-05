@@ -1,0 +1,41 @@
+Processing ember2018/train_features_0.jsonl: 50000it [00:03, 15143.42it/s]
+Processing ember2018/train_features_1.jsonl: 158158it [00:09, 16770.94it/s]
+Processing ember2018/train_features_2.jsonl: 127891it [00:08, 15746.71it/s]
+Processing ember2018/train_features_3.jsonl: 129195it [00:07, 16643.74it/s]
+Processing ember2018/train_features_4.jsonl: 132182it [00:11, 11088.87it/s]
+Processing ember2018/train_features_5.jsonl: 202574it [00:21, 9513.71it/s]
+Processing ember2018/test_features.jsonl: 200000it [00:11, 17120.37it/s]
+
+Training Logistic Regression...
+Accuracy: 0.6912
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.73      0.60      0.66    100000
+           1       0.66      0.78      0.72    100000
+
+    accuracy                           0.69    200000
+   macro avg       0.70      0.69      0.69    200000
+weighted avg       0.70      0.69      0.69    200000
+
+Random Forest Accuracy: 0.83988
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.78      0.94      0.85    100000
+           1       0.93      0.74      0.82    100000
+
+    accuracy                           0.84    200000
+   macro avg       0.85      0.84      0.84    200000
+weighted avg       0.85      0.84      0.84    200000
+
+XGBoost Accuracy: 0.88118
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.89      0.86      0.88    100000
+           1       0.87      0.90      0.88    100000
+
+    accuracy                           0.88    200000
+   macro avg       0.88      0.88      0.88    200000
+weighted avg       0.88      0.88      0.88    200000
